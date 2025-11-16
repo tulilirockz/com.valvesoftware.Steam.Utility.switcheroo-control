@@ -1,0 +1,36 @@
+From 56e4e4e18437c6984e6df1c1cd80b7fcb3fc878e Mon Sep 17 00:00:00 2001
+From: Tulip Blossom <tulilirockz@posteo.com>
+Date: Sat, 11 Oct 2025 11:40:37 -0300
+Subject: [PATCH] noudevdep
+
+Signed-off-by: Tulip Blossom <tulilirockz@posteo.com>
+---
+ meson.build | 12 ------------
+ 1 file changed, 12 deletions(-)
+
+diff --git a/meson.build b/meson.build
+index b736b9c..13898e6 100644
+--- a/meson.build
++++ b/meson.build
+@@ -30,18 +30,6 @@ if systemd_systemunitdir == ''
+   systemd_systemunitdir = dependency('systemd').get_pkgconfig_variable('systemdsystemunitdir')
+ endif
+ 
+-hwdb_dir = get_option('hwdbdir')
+-if hwdb_dir == ''
+-  udevdir = dependency('udev').get_pkgconfig_variable('udevdir')
+-  hwdb_dir = udevdir / 'hwdb.d'
+-endif
+-
+-rules_dir = get_option('rulesdir')
+-if rules_dir == ''
+-  udevdir = dependency('udev').get_pkgconfig_variable('udevdir')
+-  rules_dir = udevdir / 'rules.d'
+-endif
+-
+ # Make like license available in the build root for docs
+ configure_file(
+   input: 'COPYING',
+-- 
+2.51.0
+

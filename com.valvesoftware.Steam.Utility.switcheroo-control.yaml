@@ -1,0 +1,28 @@
+id: com.valvesoftware.Steam.Utility.switcheroo-control
+default-branch: stable
+runtime: com.valvesoftware.Steam
+runtime-version: stable
+sdk: org.freedesktop.Sdk//24.08
+build-extension: true
+
+build-options:
+  # cflags: -I/app/utils/switcheroo-control/include
+  # cxxflags: -I/app/utils/switcheroo-control/include
+  ldflags: -L/app/utils/switcheroo-control/lib
+  prefix: /app/utils/switcheroo-control
+  libdir: /app/utils/switcheroo-control/lib
+  prepend-path: /app/utils/switcheroo-control/bin
+  prepend-ld-library-path: /app/utils/switcheroo-control/lib
+  prepend-pkg-config-path: /app/utils/switcheroo-control/lib/pkgconfig
+
+modules:
+  - name: switcheroo-control
+    buildsystem: meson
+    config-opts:
+      - -Dhwdbdir=/app/utils/switcheroo-control/lib/udev/hwdb.d
+      - -Drulesdir=/app/utils/switcheroo-control/lib/udev/rules.d
+      - -Dsystemdsystemunitdir=/app/utils/switcheroo-control/lib/systemd/system
+    sources:
+      - type: git
+        url: https://gitlab.freedesktop.org/hadess/switcheroo-control.git
+        commit: 2adfa2dff85b9886ce0fddca6863fe9f2eaf54a0
